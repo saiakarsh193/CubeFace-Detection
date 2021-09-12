@@ -1,8 +1,10 @@
-# CubeFace Classifier
+# CubeFace Detection
 
 ## Made by Sai Akarsh (12-09-21)
 
 ### Description
+
+CubeFace Detection is a program which takes in the photo of a rubik's cube face and tries to get the colors on that face. This is useful to automate user input for automatic solvers. The program gives a raw character array as output and hence can be used for variety of projects.
 
 This version is built on top of the older version which used a primitive linear distance classifier. This version uses a self trained SVM classifier from the sklearn toolkit to classify the faces. Using a powerful classifier drastically improved the accuracy of the classification.
 
