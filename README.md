@@ -12,8 +12,6 @@ Accuracy of classification = 93%
 
 ### Running the Code
 
-To start the flask server.
+To start the flask server: `python api.py`
 
-`python api.py`
-
-Then go to host which is usually `https://127.0.0.1:5000` to access the `index.html` file.
+Then go to the host which is usually `https://127.0.0.1:5000` to access the `index.html` file.

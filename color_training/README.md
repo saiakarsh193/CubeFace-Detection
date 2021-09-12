@@ -8,8 +8,8 @@ See `trainer.py` and `tester.py` to see how to train your own datasets and to ge
 
 Format of the features in the json file, (nd stands for normalized distance)
 
-```json
+`
 {
 	'data' : [[nd1, nd2, nd3, nd4, nd5, nd6],[],[],..]
 }
-```
+`
