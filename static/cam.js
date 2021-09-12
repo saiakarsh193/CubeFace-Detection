@@ -42,7 +42,7 @@ async function getColors(data)
                 }
             }
             promises.push(
-                postData('/test', {'data': ndata})
+                postData('/classify', {'data': ndata})
                 .then(data =>
                 {
                     return data['color'];
