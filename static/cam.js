@@ -18,6 +18,7 @@ click_button.addEventListener('click', function() {
         console.log(results[0]);
         console.log(results[1]);
         console.log(results[2]);
+        setCubeFace(results);
     });
 });
 
