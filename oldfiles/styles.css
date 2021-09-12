@@ -1,0 +1,47 @@
+#mainholder
+{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#mainholder > div
+{
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.overlay-holder
+{
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 320px;
+    height: 240px;
+    border-radius: 5px;
+}
+
+.video-overlay
+{
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 0 0 70px rgba(0, 0, 0, 0.75);
+}
+
+.myhold
+{
+    background-color: rgb(211, 211, 211);
+    border-radius: 5px;
+}
+
+.btn
+{
+    margin-top: 25px;
+}
