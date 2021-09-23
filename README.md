@@ -1,6 +1,6 @@
 # CubeFace Detection
 
-## Made by Sai Akarsh (12-09-21)
+## Sai Akarsh (12-09-21)
 
 ### Description
 
