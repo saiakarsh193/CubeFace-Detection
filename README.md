@@ -11,6 +11,5 @@ To use a python model inside javascript, the entire project has been shifted to 
 Accuracy of classification = 93%  
 
 ### Running the Code  
-To start the flask server, run the command  
-`python api.py`  
+To start the flask server using `python api.py` (whichever python version you are using).  
 Then go to localhost (which is usually `https://127.0.0.1:5000`) to run the `index.html` file.  
