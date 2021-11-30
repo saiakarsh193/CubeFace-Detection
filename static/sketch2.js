@@ -1,6 +1,7 @@
 let cx, cy;
 let cb;
 let sol;
+let ctext = "";
 
 function setup()
 {
@@ -20,6 +21,16 @@ function setup()
                 cb.cube[side][row][col] = rawfac[side * 9 + row * 3 + col];
         }
     }
+
+    postData('/solve', {'faces': rawfac})
+        .then(data =>
+        {
+            return data['moves'];
+        })
+        .then(moves =>
+        {
+            ctext = moves;
+        });
 }
 
 function draw()
@@ -27,4 +38,10 @@ function draw()
     background(200);
     translate(cx, cy);
     cb.draw();
+    fill(0);
+    strokeWeight(0);
+    textSize(20);
+    textAlign(CENTER);
+    textFont('Georgia');
+    text(ctext, 0, 230);
 }

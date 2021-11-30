@@ -3,7 +3,7 @@ let p5colormap = {'N': 'grey', 'G': 'green', 'O': 'orange', 'B': 'blue', 'R': 'r
 let p5selColor = 0;
 let p5pallete = ["G", "O", "B", "R", "W", "Y"];
 let p5isStart = false;
-let currentCubeFace = -1;
+let currentCubeFace = 0;
 let tcube = [];
 
 function setup()
@@ -56,7 +56,6 @@ function setCubeFace(face, val)
     if(val)
     {
         document.getElementById('add-face-btn').className = "btn btn-primary";
-        currentCubeFace += 1;
         document.getElementById('add-face-btn').innerHTML = "Add Face " + currentCubeFace;
     }
 }
@@ -80,6 +79,7 @@ function addCubeFace()
         }
         window.location = "/cubefaces?faces=" + strcube;
     }
+    currentCubeFace += 1;
 }
 
 function mousePressed()
