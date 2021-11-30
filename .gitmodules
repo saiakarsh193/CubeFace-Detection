@@ -1,0 +1,3 @@
+[submodule "PyCube-Solver"]
+	path = PyCube-Solver
+	url = https://github.com/saiakarsh193/PyCube-Solver
