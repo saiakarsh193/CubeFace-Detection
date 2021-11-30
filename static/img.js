@@ -1,8 +1,13 @@
 function processImage(img)
 {
-    console.log(img.length);
     getColors(img)
-    .then((results) =>{
+    .then((sresults) =>{
+        let results = new Array(3).fill(0).map(() => new Array(3).fill(0));
+        for(let i = 0;i < 3;i ++)
+        {
+            for(let j = 0;j < 3;j ++)
+                results[i][j] = sresults[i * 3 + j];
+        }
         console.log('OUTPUT:');
         console.log(results[0]);
         console.log(results[1]);
@@ -15,43 +20,55 @@ async function getColors(data)
 {
     let s = Math.sqrt(data.length / 4);
     let a = s / 3;
-    let colors = new Array(3).fill(0).map(() => new Array(3).fill('N'));
-    let cmap = ['G', 'O', 'B', 'R', 'W', 'Y'];
-    let promises = [];
+    let odata = [];
+    let stride = int(a / 10);
     for(let i = 0;i < 3;i ++)
     {
         for(let j = 0;j < 3;j ++)
         {
             let ndata = [];
-            for(let k = (a * i);k < (a * i) + a;k ++)
+            for(let k = (a * i);k < (a * i) + a;k += stride)
             {
-                for(let l = (a * j);l < (a * j) + a;l ++)
+                for(let l = (a * j);l < (a * j) + a;l += stride)
                 {
-                    let ind = k * s + l;
-                    ndata.push(normalDist([data[4 * ind], data[4 * ind + 1], data[4 * ind + 2]]));
+                    let tmp = [0, 0, 0];
+                    for(let q = k; q < k + stride;q ++)
+                    {
+                        for(let w = l; w < l + stride;w ++)
+                        {
+                            let ind = k * s + l;
+                            tmp[0] += data[4 * ind + 0]
+                            tmp[1] += data[4 * ind + 1]
+                            tmp[2] += data[4 * ind + 2]
+                        }
+                    }
+                    tmp[0] /= stride * stride;
+                    tmp[1] /= stride * stride;
+                    tmp[2] /= stride * stride;
+                    ndata.push(normalDist(tmp));
                 }
             }
-            promises.push(
-                postData('/classify', {'data': ndata})
-                .then(data =>
-                {
-                    return data['color'];
-                })
-                .then(result => 
-                {
-                    let votes = new Array(6).fill(0);
-                        for(let k = 0;k < result.length;k ++)
-                            votes[result[k]] ++;
-                    return indexOfMax(votes);
-                })
-                .then(ind =>
-                {
-                    colors[i][j] = cmap[ind];
-                })
-            );
+            odata.push(ndata);
         }
     }
-    return Promise.all(promises).then(() => {return colors});
+    return postData('/classify', {'data': odata})
+            .then(data =>
+            {
+                return data['colors'];
+            })
+            .then(result => 
+            {
+                let cols = [];
+                let cmap = ['G', 'O', 'B', 'R', 'W', 'Y'];
+                for(let i = 0;i < result.length;i ++)
+                {
+                    let votes = new Array(6).fill(0);
+                    for(let k = 0;k < result[i].length;k ++)
+                        votes[result[i][k]] ++;
+                    cols.push(cmap[indexOfMax(votes)]);
+                }
+                return cols;
+            });
 }
 
 function normalDist(col)

@@ -13,9 +13,11 @@ def home_page():
 @app.route('/classify', methods=['POST'])
 def classifier():
     if request.method == 'POST':
-        data = request.get_json()['data']
-        colordata = model.predict(data).tolist()
-        message = {'color': colordata}
+        odata = request.get_json()['data']
+        colors = []
+        for data in odata:
+            colors.append(model.predict(data).tolist())
+        message = {'colors': colors}
         return jsonify(message), 200
 
 app.run(debug=True)
