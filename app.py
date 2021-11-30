@@ -1,9 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import pickle
-import sys
-sys.path.insert(1, './PyCube-Solver/')
-from cube import Cube
-from solver import Solver
+from stringsolver import stringmoves
 
 app = Flask(__name__)
 
@@ -32,15 +29,7 @@ def classifier():
 def solvecube():
     if request.method == 'POST':
         faces = request.get_json()['faces']
-        lfaces = [[[faces[side * 9 + row * 3 + col] for col in range(3)] for row in range(3)] for side in range(6)]
-        cb = Cube(faces=lfaces)
-        sol = Solver(cb)
-        sol.solveCube(optimize=True)
-        nmoves = sol.getMoves(decorated=True).split("\n")
-        moves = ""
-        for move in nmoves:
-            ind = move.find(":")
-            moves += move[ind + 2:]
+        moves  = stringmoves(faces)
         message = {'moves': moves}
         return jsonify(message), 200
 
