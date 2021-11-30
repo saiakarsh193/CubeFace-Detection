@@ -10,16 +10,19 @@
     </head>
     <body>
         <div id="mainholder">
-            <div>
+            <div id="temp-1">
                 <div class="overlay-holder"><div class="video-overlay"></div></div>
                 <video class="myhold" id="video" width="320" height="240" autoplay></video>
                 <button type="button" class="btn btn-primary" id="start-camera">Start Camera</button>
             </div>
-            <div>
+            <div id="temp-2">
                 <canvas class="myhold" id="canvas" width="300" height="300"></canvas>    
                 <button type="button" class="btn btn-primary" id="click-photo">Click Photo</button>
             </div>
-            <div id="p5holder"></div>
+            <div id="temp-3">
+                <div id="p5holder"></div>
+                <button type="button" class="btn btn-primary disabled" onclick="addCubeFace()" id="add-face-btn">Add Face</button>
+            </div>
         </div>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
         <script type="text/javascript" src="../static/sketch.js"></script>

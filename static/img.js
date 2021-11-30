@@ -8,11 +8,11 @@ function processImage(img)
             for(let j = 0;j < 3;j ++)
                 results[i][j] = sresults[i * 3 + j];
         }
-        console.log('OUTPUT:');
-        console.log(results[0]);
-        console.log(results[1]);
-        console.log(results[2]);
-        setCubeFace(results);
+        // console.log('OUTPUT:');
+        // console.log(results[0]);
+        // console.log(results[1]);
+        // console.log(results[2]);
+        setCubeFace(results, true);
     });
 }
 
