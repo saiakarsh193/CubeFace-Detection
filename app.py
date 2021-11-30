@@ -9,6 +9,10 @@ with open('./color_training/colmodel.pkl', 'rb') as f:
 @app.route('/')
 def home_page():
     return render_template('index.html')
+
+@app.route('/cubefaces')
+def cube_page():
+    return render_template('cubefaces.html')
     
 @app.route('/classify', methods=['POST'])
 def classifier():

@@ -4,6 +4,7 @@ let p5selColor = 0;
 let p5pallete = ["G", "O", "B", "R", "W", "Y"];
 let p5isStart = false;
 let currentCubeFace = -1;
+let tcube = [];
 
 function setup()
 {
@@ -62,13 +63,22 @@ function setCubeFace(face, val)
 
 function addCubeFace()
 {
+    tcube.push([...p5cubeface]);
     p5isStart = false;
     document.getElementById('add-face-btn').className = "btn btn-primary disabled";
     if(currentCubeFace == 5)
     {
-        document.getElementById('temp-1').remove();
-        document.getElementById('temp-2').remove();
-        document.getElementById('temp-3').remove();
+        let strcube = "";
+        document.getElementById('mainholder').remove();
+        for(let side = 0;side < 6;side ++)
+        {
+            for(let row = 0;row < 3; row ++)
+            {
+                for(let col = 0;col < 3; col ++)
+                    strcube += tcube[side][row][col];
+            }
+        }
+        window.location = "/cubefaces?faces=" + strcube;
     }
 }
 
