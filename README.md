@@ -13,3 +13,8 @@ Accuracy of classification = 93%
 ### Running the Code  
 Start the flask server using `python api.py`.  
 Then go to localhost (which is usually `https://127.0.0.1:5000`) to run the `index.html` file.  
+
+Then follow the instructions and scan all the six faces.  
+Then it relocates to the solver page and prints the moves required to solve the cube.  
+
+**Note: If the faces were scanned incorrectly and hence results in an invalid cube orientation, an error will be given.**  
