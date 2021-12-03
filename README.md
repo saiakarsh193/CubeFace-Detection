@@ -2,7 +2,7 @@
 ## Sai Akarsh (12-09-21)  
 
 ### Description  
-CubeFace Detection takes in an image of a rubik's cube face and extracts the constituent colors from that face image. This is useful for automating user input in cube solvers. The program gives a raw character array as output and hence can be used for variety of projects. It also draws the extracted face using P5JS library for better visualization.  
+CubeFace Detection takes in an image of a rubik's cube face and extracts the constituent colors from that face image. I have combined my [Rubik's cube solving code](https://github.com/saiakarsh193/PyCube-Solver) to build an end-to-end system which scans your cube and gives you the moves. You need to scan all the six faces from index 0 to 5 based on the printing orientation used for solving.  
 
 This version is built on top of the older system (which used linear distance for classification). This version uses a self trained SVM classifier from the sklearn toolkit to classify the face data. Using a powerful multifeature classifier to do this over a linear distance classifier drastically improved the accuracy of the classification.  
 
