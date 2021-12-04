@@ -2,6 +2,7 @@ import sys
 sys.path.insert(1, './PyCube-Solver/')
 from cube import Cube
 from solver import Solver
+from helper import rawCondense
 
 def stringmoves(faces):
     lfaces = [[[faces[side * 9 + row * 3 + col] for col in range(3)] for row in range(3)] for side in range(6)]
@@ -14,6 +15,6 @@ def stringmoves(faces):
         for move in nmoves:
             ind = move.find(":")
             moves += move[ind + 2:]
-        return moves
+        return rawCondense(moves)
     else:
         return "Invalid configuration"
