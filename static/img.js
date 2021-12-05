@@ -69,9 +69,9 @@ function classifyHSI(col)
     // g = 0, o = 1, b = 2, r = 3, w = 4, y = 5
     if(sat < 0.1)
         return 4;
-    if(hue >= 0 && hue < 7)
+    if(hue >= 0 && hue < 10)
         return 3;
-    if(hue >= 7 && hue < 35)
+    if(hue >= 10 && hue < 35)
         return 1;
     if(hue >= 35 && hue < 90)
         return 5;
