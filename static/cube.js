@@ -323,6 +323,41 @@ class Cube
             this.move(this.moves.splice(0, 1));
     }
 
+    print()
+    {
+        let kstr = "";
+        for(let row = 0;row < 3; row ++)
+        {
+            kstr += "    ";
+            for(let col = 0;col < 3; col ++)
+                kstr += this.cube[5][row][col];
+            kstr += "\n";
+        }
+        for(let row = 0;row < 3; row ++)
+        {
+            for(let col = 0;col < 3; col ++)
+                kstr += this.cube[3][row][col];
+            kstr += " ";
+            for(let col = 0;col < 3; col ++)
+                kstr += this.cube[0][row][col];
+            kstr += " ";
+            for(let col = 0;col < 3; col ++)
+                kstr += this.cube[1][row][col];
+            kstr += " ";
+            for(let col = 0;col < 3; col ++)
+                kstr += this.cube[2][row][col];
+            kstr += "\n";
+        }
+        for(let row = 0;row < 3; row ++)
+        {
+            kstr += "    ";
+            for(let col = 0;col < 3; col ++)
+                kstr += this.cube[4][row][col];
+            kstr += "\n";
+        }
+        print(kstr);
+    }
+
     updateAll()
     {
         while(this.moves.length > 0)
