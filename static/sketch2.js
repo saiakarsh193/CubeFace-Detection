@@ -36,32 +36,25 @@ function setup()
             document.getElementById('txmoves').innerHTML = "Moves to solve the cube : " + moves;
             cb.addMoves(moves);
             ttwidth = textWidth(moves) / 2;
+            let val = "";
+            let cnt = 0;
             for(let i = 0;i < moves.length;i ++)
             {
                 if(moves[i].toLowerCase() != moves[i].toUpperCase() && moves[i] != 'w')
                 {
-                    let val = moves[i];
-                    let cnt = 1;
-                    if(i + 1 < moves.length)
-                    {
-                        if(moves[i + 1] == 'w' || moves[i + 1] == "\'")
-                        {
-                            val += moves[i + 1];
-                            if(i + 2 < moves.length && moves[i + 2] == '2')
-                            {
-                                val += moves[i + 2];
-                                cnt = 2;
-                            }
-                        }
-                        else if(moves[i + 1] == '2')
-                        {
-                            val += moves[i + 1];
-                            cnt = 2;
-                        }
-                    }
-                    lmoves.push([val, cnt]);
+                    if(val.length > 0)
+                        lmoves.push([val, cnt]);
+                    val = moves[i];
+                    cnt = 1;
+                }
+                else
+                {
+                    if(moves[i] == '2')
+                        cnt = 2;
+                    val += moves[i];
                 }
             }
+            lmoves.push([val, cnt]);
         });
 }
 
@@ -71,7 +64,7 @@ function draw()
     translate(cx, cy);
     cb.draw();
     drawText(-ttwidth, 230, lmoves);
-    if(frameCount % 10 == 0 && lmoves.length > 0)
+    if(frameCount % 10 == 0 && lmoves.length > 0 && curmove < lmoves.length)
     {
         cb.update();
         lmoves[curmove][1] --;

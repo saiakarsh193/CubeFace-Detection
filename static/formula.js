@@ -17,7 +17,7 @@ function condenseFormula(form)
     let temp = [];
     for(let i = 0;i < form.length;i ++)
     {
-        if((form[i] >= 'a' && form[i] <= 'z') || (form[i] >= 'A' && form[i] <= 'Z'))
+        if(((form[i] >= 'a' && form[i] <= 'z') || (form[i] >= 'A' && form[i] <= 'Z')) && (form[i] != "w"))
             temp.push(form[i]);
         else
             temp[temp.length - 1] += form[i];
@@ -37,21 +37,33 @@ function condenseFormula(form)
         val[i][1] = ((val[i][1] - 1) % 4) + 1;
         if(val[i][1] == 3)
         {
-            val[i][0] = (val[i][0].length == 2) ? val[i][0][0] : val[i][0] + '\'';
+            val[i][0] = (val[i][0][val[i][0].length - 1] == "\'") ? val[i][0] + "\'" : val[i][0].substring(0, val[i][0].length);
             val[i][1] = 1;
         }
         else if(val[i][1] == 4)
             val[i][1] = 0;
     }
     // removing negating moves
-    for(let i = 0;i < val.length - 1;i ++)
+    while(true)
     {
-        if(val[i][0].length != val[i + 1][0].length && val[i][0][0] == val[i + 1][0][0])
+        let isChange = false;
+        for(let i = 0;i < val.length - 1;i ++)
         {
-            let minv = min(val[i][1], val[i + 1][1]);
-            val[i][1] -= minv;
-            val[i + 1][1] -= minv;
+            if(abs(val[i][0].length - val[i + 1][0].length) == 1 && val[i][0].substring(0, min(val[i][0].length, val[i + 1][0].length)) == val[i + 1][0].substring(0, min(val[i][0].length, val[i + 1][0].length)) && (val[i][0][val[i][0].length - 1] == "\'" || val[i + 1][0][val[i + 1][0].length - 1] == "\'"))
+            {
+                let minv = min(val[i][1], val[i + 1][1]);
+                val[i][1] -= minv;
+                val[i + 1][1] -= minv;
+                if(val[i + 1][1] == 0)
+                    val.splice(i + 1, 1);
+                if(val[i][1] == 0)
+                    val.splice(i, 1);
+                isChange = true;
+                break;
+            }
         }
+        if(!isChange)
+            break;
     }
     // 2d count array to string
     let cform = "";
